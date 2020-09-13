@@ -38,11 +38,19 @@ For image processing Roboflow is an online system that allows you to take your a
 
 In order to solve the problem I have used YOLOv3 Object Detector algorithm. When it comes to object detection there are a few options available. For this particular application I have decided to use YOLO as it is the one that gives best performance on (almost) real time applications which would be a key characteristic for this use case. Along the process there were a few parameters needed to be tweaked including number of epochs, batch size and mainly the learning rate. As we will see, it will also be required at a later date to improve non max suppression, as in some instances more than one box mistakenly surrounds a particular object. This is discussed more in detail in the next sections.
 
+#### 3.1 - Network Architecture:
+Yolo v3 uses a network architecture called Darknet-53. The architecture defines the number of layers that the network is comprised of. Darknet-53 is comprised of a total of 53 convolutional layers, and another 53 stacked up for object detection purposes, which brings it to a total of 106. This architecture is an improvement from its previous version, Darknet-19 with only 19 layers. This increase in the number of layers has provided it with additional capacity to fix several drawbacks compared with Darknet-19, like the detection of small objects.
+#### 3.2 - Weights
+In order to use a neural network for inference it is required to train it on a image dataset to define the set of weights for each layer. The ideal scenario is to train the NN from the beginning for our particular use case so that all the weights are customised for our application, however, this would take a long time and computer power. To solve this, it is widely accepted that weights trained from one object detection application is a good starting point and and can be used for other object detection tasks. 
+#### 3.2 - Customization of weights for our problem 
+In our case it has ben taken an intermediate approach that is accepted as a good compromise for problem customization. This involves to use pre-trained weights, as discussed above, but unfreeze the last few layers of the architecture and re-obtain these weights for for our particular application, with our data. 
+
 ### 4 - INFERENCE: RESULTS (TO DO - expand)
+The gif at the start of the post shows some instances where the algorithm is able to provide results that correspond to the ground truth or are very close.  However, there were many other instances where the results were not as accurate. Below they are shown a few of these examples as well as it was expected.
+- Add examples of successfully classified classes (TO DO - expand)
+- Add examples of unsuccessfully classified classes. Explain potential reasons why this is happening. (TO DO - expand)
 
-- Add examples of successfully classified classes
-- Add examples of unsuccessfully classified classes. Explain potential reasons why this is happening. 
-
+Based on these observations there are proposed additional actions to improve the performance of the algorithm.
 
 ### 5 - NEXT STEPS: WHAT CAN BE IMPROVED (AND HOW) (TO DO - expand)
 
