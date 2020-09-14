@@ -45,19 +45,40 @@ In order to use a neural network for inference it is required to train it on a i
 #### 3.2 - Customization of weights for our problem 
 In our case it has ben taken an intermediate approach that is accepted as a good compromise for problem customization. This involves to use pre-trained weights, as discussed above, but unfreeze the last few layers of the architecture and re-obtain these weights for for our particular application, with our data. 
 
-### 4 - INFERENCE: RESULTS (TO DO - expand)
-The gif at the start of the post shows some instances where the algorithm is able to provide results that correspond to the ground truth or are very close.  However, there were many other instances where the results were not as accurate. Below they are shown a few of these examples as well as it was expected.
-- Add examples of successfully classified classes (TO DO - expand)
-- Add examples of unsuccessfully classified classes. Explain potential reasons why this is happening. (TO DO - expand)
+### 4 - INFERENCE: RESULTS 
+The gif at the start of the post shows some instances where the algorithm is able to provide results that correspond to the ground truth or are very close.  However, there were many other instances where the results were not as accurate. Below they are shown a few of these examples where the algorithm did not perform as as well as it was expected.
+
+- PROBLEM 1: Objects being misclassified.
+<p align="center">
+<img width="955" alt="Screenshot 2020-09-14 at 08 20 56" src="https://user-images.githubusercontent.com/35865504/93056528-734fe600-f664-11ea-80ec-9c6cfe3c77db.png">
+</p>
+
+- PROBLEM 2: Objects not being detected at all
+<p align="center">
+<img width="955" alt="Screenshot 2020-09-14 at 07 58 36" src="https://user-images.githubusercontent.com/35865504/93055439-d5a7e700-f662-11ea-93da-fe4c85ad2b45.png">
+</p>
+
+- PROBLEM 3: Objects being classified as multiple classes
+<p align="center">
+<img width="953" alt="Screenshot 2020-09-14 at 08 33 07" src="https://user-images.githubusercontent.com/35865504/93056873-f2ddb500-f664-11ea-8ecf-1567ef48c710.png">
+</p>
+
+- PROBLEM 4: Multiple boxes for classifiying the same object (left grapefruit)
+<p align="center">
+<img width="953" alt="Screenshot 2020-09-14 at 08 36 28" src="https://user-images.githubusercontent.com/35865504/93057215-74354780-f665-11ea-8c40-c74bf213e2e4.png">
+</p>
 
 Based on these observations there are proposed additional actions to improve the performance of the algorithm.
 
 ### 5 - NEXT STEPS: WHAT CAN BE IMPROVED (AND HOW) (TO DO - expand)
+As shown above after the first iteration there are a few problems to solve. In general, I would expect that by feeding more data into the algorithm the overall results will improve. The current model was trained with 180 images with a 75-25% train-dev split, and test in brand new video feed. In the next iteration I will do a train-dev-test split of 70-20-10 to learn if feeding it with a video can cause or worsen any of the problems mentioned above (maybe different scale or colours from the photo camera?)
 
+(TO DO - expand)
 - Increment number of training images to improve overall performance.
 - Potentially monitor and allow for more epochs if both the loss and val_loss keep getting lower and closer (heading towards convergence).
 - Implement mAP to have a representative metric for model accuracy
 - Revisit Non max suppresion to fix several bounding boxes detecting the same object as per gif above.
+(TO DO - expand)
 
 
 ## References
